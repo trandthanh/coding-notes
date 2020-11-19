@@ -14,7 +14,10 @@
   <body>
     <%= render 'shared/sidenav' %>
     <%= render 'shared/flashes' %>
+    <div class="position-relative">
+      <%= yield %>
 
-    <%= yield %>
+      <%= render 'shared/remote' %>
+    </div>
   </body>
 </html>
