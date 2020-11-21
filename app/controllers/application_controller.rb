@@ -11,7 +11,8 @@ class ApplicationController < ActionController::Base
   private
 
   def set_new_note_and_list
-    @note = Note.new
-    @list = List.new
+    @new_note = Note.new
+    @new_list = List.new
+    @user_tags = Tag.where(user: current_user)
   end
 end

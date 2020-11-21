@@ -9,19 +9,21 @@
 </div>
 
 <div class="modal fade" id="createNote" tabindex="-1" role="dialog" aria-labelledby="createNoteLabel" aria-hidden="true">
-  <div class="d-flex justify-content-center py-5 height-100" role="document">
+  <div class="modal-dialog d-flex justify-content-center py-5 height-100 max-width-80vw" role="document">
     <div class="modal-content width-80">
       <div class="modal-body">
-        <%= simple_form_for(@note, html: { class: "height-100" }) do |f| %>
+        <%= simple_form_for(new_note, html: { class: "height-100" }) do |f| %>
           <div class="form-inline">
             <%= f.input :title, required: false, input_html: { class: "ml-2" } %>
           </div>
+          <%= f.input :tag, collection: user_tags %>
           <%= f.input :note_taken_on, required: false %>
           <%= f.input :content, label: false,
                                 required: false,
                                 wrapper_html: {
                                   class: ""
                                 } %>
+          <%= f.submit "Create", class: "btn btn-dark" %>
         <% end %>
       </div>
     </div>
