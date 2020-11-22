@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :lists, only: [:show, :create, :update, :delete]
   resources :tags, only: [:create, :delete]
 
-  get "results", to: "pages#results"
+  get "/results", to: "pages#results"
 
   root to: 'pages#today'
 end

@@ -14,5 +14,11 @@ class ApplicationController < ActionController::Base
     @new_note = Note.new
     @new_list = List.new
     @user_tags = Tag.where(user: current_user)
+    build_notes_hash
+  end
+
+  def build_notes_hash
+    # TODO(trandthanh): Order by ddate
+    @all_user_notes = Note.where(user: current_user)
   end
 end

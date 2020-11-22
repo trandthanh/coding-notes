@@ -1,5 +1,11 @@
 <div>
   <h1><%= @note.title %></h1>
-  <p><%= @note.note_taken_on %> </p>
-  <p><%= @note.content %></p>
+  <p><%= @note.note_taken_on.strftime("%d %B %Y") %> at <%= @note.note_taken_on.strftime("%H:%M") %></p>
+  <% @note.note_tags.each do |note_tag| %>
+    <div class="badge badge-dark">
+      #<%= note_tag.tag.name %>
+    </div>
+  <% end %>
+  <hr>
+  <div class="markdown-content background-color-white p-3" data-content="<%= @note.content %>"></div>
 </div>

@@ -1,9 +1,9 @@
 <div class="position-absolute d-flex flex-column" style="bottom: 3rem; right: 3rem;">
-  <%= link_to "#", class: "btn btn-light my-1", data: { toggle: "modal", target: "#createNote" } do %>
+  <%= link_to "#", class: "btn btn-dark my-1", data: { toggle: "modal", target: "#createNote" } do %>
     + 💻 Note
   <% end %>
 
-  <%= link_to "#", class: "btn btn-light my-1", data: { toggle: "modal", target: "#createList" } do %>
+  <%= link_to "#", class: "btn btn-dark my-1", data: { toggle: "modal", target: "#createList" } do %>
     + ⏱ List
   <% end %>
 </div>
@@ -16,7 +16,11 @@
           <div class="form-inline">
             <%= f.input :title, required: false, input_html: { class: "ml-2" } %>
           </div>
-          <%= f.input :tag, collection: user_tags %>
+          <%= f.input :tag, collection: user_tags.map(&:name),
+                            include_blank: false,
+                            include_hidden: false,
+                            input_html: { multiple: true,
+                                          class: "multiple-select" } %>
           <%= f.input :note_taken_on, required: false %>
           <%= f.input :content, label: false,
                                 required: false,

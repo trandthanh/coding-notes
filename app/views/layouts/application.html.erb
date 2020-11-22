@@ -13,12 +13,16 @@
 
   <body>
     <div class="d-flex">
-      <%= render 'shared/sidenav' %>
+      <% unless params[:controller] == "devise/sessions" || params[:controller] == "devise/registrations" %>
+        <%= render 'shared/sidenav', all_user_notes: @all_user_notes,
+                                     user_tags: @user_tags %>
+      <% end %>
       <%= render 'shared/flashes' %>
-      <div class="position-relative w-100">
+      <div class="position-relative w-100 p-5">
         <%= yield %>
 
-        <%= render 'shared/remote', user_tags: @user_tags, new_note: @new_note %>
+        <%= render 'shared/remote', user_tags: @user_tags,
+                                    new_note: @new_note %>
       </div>
     </div>
   </body>

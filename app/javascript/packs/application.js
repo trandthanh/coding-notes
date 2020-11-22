@@ -26,9 +26,13 @@ require("channels")
 import "bootstrap";
 
 // Internal imports, e.g:
-// import { initSelect2 } from '../components/init_select2';
+import { multipleSelect } from '../plugins/select2';
+import { initMarkdown } from '../plugins/markdown';
+
 
 document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
+  multipleSelect();
+  if (document.querySelector(".markdown-content")) {
+    initMarkdown();
+  }
 });

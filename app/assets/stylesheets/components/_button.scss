@@ -1,0 +1,28 @@
+.btn-link {
+  color: $light-gray;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+.btn {
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+.btn-dark {
+  background-color: $lavender-gray;
+  border: 0px;
+
+  &:hover {
+    background-color: $cultured;
+    color: $lavender-gray;
+  }
+}

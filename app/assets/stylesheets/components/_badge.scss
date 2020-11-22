@@ -1,0 +1,9 @@
+.badge-dark {
+  background-color: $raisin-black;
+
+
+  &:hover {
+    color: $raisin-black !important;
+    background-color: $cultured !important;
+  }
+}
