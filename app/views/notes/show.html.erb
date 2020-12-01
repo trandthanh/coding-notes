@@ -1,5 +1,10 @@
 <div>
-  <h1><%= @note.title %></h1>
+  <div class="d-flex align-items-center">
+    <h1><%= @note.title %></h1>
+    <span class="ml-2">
+      <%= link_to "(edit)", "#", data: { toggle: "modal", target: "#editNote" } %>
+    </span>
+  </div>
   <p><%= @note.note_taken_on.strftime("%d %B %Y") %> at <%= @note.note_taken_on.strftime("%H:%M") %></p>
   <% @note.note_tags.each do |note_tag| %>
     <div class="badge badge-dark">
@@ -8,4 +13,34 @@
   <% end %>
   <hr>
   <div class="markdown-content background-color-white p-3" data-content="<%= @note.content %>"></div>
+</div>
+
+<div class="modal fade" id="editNote" tabindex="-1" role="dialog" aria-labelledby="editNoteLabel" aria-hidden="true">
+  <div class="modal-dialog d-flex justify-content-center py-5 height-100 max-width-80vw" role="document">
+    <div class="modal-content width-80">
+      <div class="modal-body">
+        <%= simple_form_for(@note, html: { class: "height-100" }) do |f| %>
+          <div class="form-inline">
+            <%= f.input :title, required: false, input_html: { id: "edit-note-title", class: "ml-2" } %>
+          </div>
+          <%= f.input :tag, collection: @user_tags.map(&:name),
+                            include_blank: false,
+                            include_hidden: false,
+                            input_html: { multiple: true,
+                                          id: "edit-note-select",
+                                          class: "multiple-select" } %>
+          <%= f.input :note_taken_on, required: false,
+                                      input_html: {
+                                        id: ""
+                                      } %>
+          <%= f.input :content, label: false,
+                                required: false,
+                                input_html: {
+                                  id: "edit-note-content"
+                                } %>
+          <%= f.submit "Edit", class: "btn btn-dark" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,6 +1,7 @@
 class NotesController < ApplicationController
+  before_action :set_note, only: [:show, :update]
+
   def show
-    @note = Note.find(params[:id])
   end
 
   def create
@@ -17,9 +18,20 @@ class NotesController < ApplicationController
     end
   end
 
+  def update
+    @note = Note.find(params[:id])
+    @note.update(note_params)
+    # do something for tags
+    redirect_to note_path(@note)
+  end
+
   private
 
+  def set_note
+    @note = Note.find(params[:id])
+  end
+
   def note_params
-    params.require(:note).permit(:title, :content, :note_taken_on)
+    params.require(:note).permit(:title, :content, :note_taken_on, tag: [])
   end
 end
